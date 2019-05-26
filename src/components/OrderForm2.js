@@ -5,7 +5,6 @@ import laing from '../assets/laing.jpg';
 
 class OrderForm2 extends Component {
     handleSubmit = (event) => {
-        // alert(`${this.state.username}  ${this.state.comments} ${this.state.topic}`);
         console.log(event.OrderForm2);
         event.preventDefault();
     }
@@ -17,6 +16,7 @@ class OrderForm2 extends Component {
             margin-left: auto;
             margin-right: auto;
             width: 30%;
+
             border-style: solid;
             border-width: 1px;
             padding: 5px;

@@ -33,7 +33,7 @@ const Styles = styled.div`
 const JumbotronHome = () => (
     <Styles>
         <Jumbotron>
-            <video loop autoPlay>
+            <video loop autoPlay muted>
                 <source src={CookingPan} type="video/mp4"></source>
             </video>
 

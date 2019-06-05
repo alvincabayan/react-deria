@@ -1,13 +1,29 @@
 import React, { Component } from 'react'
 import {Form, Button, Image, Row, Col} from 'react-bootstrap'
+import ReactDOM from "react-dom";
 import styled from 'styled-components';
 import laing from '../assets/laing.jpg';
 
 class OrderForm2 extends Component {
+    state = { 
+        name: '',
+        customerName: '',
+        customerCompany: '',
+        menuOrderSize: ''
+    }
+    
     handleSubmit = (event) => {
-        console.log(event.OrderForm2);
+        const name=this.refs.name.value;
+        const company= this.refs.company.value;
+        const orderSize= ReactDOM.findDOMNode(this).querySelector('input[type="radio"][name="orderSize"]:checked').value;
+        console.log(name);
+        console.log(company);
+        console.log(orderSize);
+        
+        console.log(JSON.stringify(name));
         event.preventDefault();
     }
+
     
     render() {
         const Styles = styled.div`
@@ -15,17 +31,17 @@ class OrderForm2 extends Component {
             display: block;
             margin-left: auto;
             margin-right: auto;
-            width: 30%;
+            width: 480px;
 
             border-style: solid;
             border-width: 1px;
             padding: 5px;
         }
         `;
-
+        
         return (
             <Styles>
-                <Form className="orderForm2" onSubmit={this.handleSubmit}>
+                <Form className="orderForm2" onSubmit={this.handleSubmit} ref="orderform2">
                     <Image src={laing} fluid></Image>
                     <h2>Special Order: Laing</h2>
                     
@@ -34,7 +50,7 @@ class OrderForm2 extends Component {
                             Name
                         </Form.Label>
                         <Col sm={9}>
-                            <Form.Control type="text" placeholder="Name"/>
+                            <Form.Control type="text" placeholder="Name" ref="name"/>
                         </Col>
                     </Form.Group>
 
@@ -43,7 +59,7 @@ class OrderForm2 extends Component {
                             Company
                         </Form.Label>
                         <Col sm={9}>
-                            <Form.Control type="text" placeholder="Company"/>
+                            <Form.Control as='input' type="text" placeholder="Company" ref="company"/>
                         </Col>
                     </Form.Group>
 
@@ -55,17 +71,19 @@ class OrderForm2 extends Component {
                             <Col sm={9}>
                                 <Form.Check 
                                     inline 
+                                    name='orderSize'
                                     type='radio'
                                     id='smallOrder'
-                                    name='orderSize'
                                     label='Small Order with Rice'
+                                    value='small'
                                 />
                                 <Form.Check
                                     inline 
+                                    name='orderSize'
                                     type='radio'
                                     id='largeOrder'
-                                    name='orderSize'
                                     label='Large Order'
+                                    value='large'
                                 />
                             </Col>
                         </Form.Group>

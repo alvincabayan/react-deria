@@ -3,25 +3,49 @@ import {Form, Button, Image, Row, Col} from 'react-bootstrap'
 import ReactDOM from "react-dom";
 import styled from 'styled-components';
 import laing from '../assets/laing.jpg';
+import axios from 'axios';
 
 class OrderForm2 extends Component {
-    state = { 
-        name: '',
-        customerName: '',
-        customerCompany: '',
-        menuOrderSize: ''
-    }
+    constructor(props) {
+        super(props);
+      
+        this.state = {
+            name: "laing",
+            customerName: '',
+            customerCompany: '',
+            orderSize: ''
+        };
+      }
     
     handleSubmit = (event) => {
-        const name=this.refs.name.value;
-        const company= this.refs.company.value;
-        const orderSize= ReactDOM.findDOMNode(this).querySelector('input[type="radio"][name="orderSize"]:checked').value;
-        console.log(name);
-        console.log(company);
-        console.log(orderSize);
+        this.setState({
+            name: "laing",
+            customerName: this.refs.customerName.value,
+            customerCompany: this.refs.customerCompany.value,
+            orderSize: ReactDOM.findDOMNode(this).querySelector('input[type="radio"][name="orderSize"]:checked').value
+        });
         
-        console.log(JSON.stringify(name));
-        event.preventDefault();
+        console.log(JSON.stringify(this.state));
+        axios.post('http://localhost:8080/deria/v1/menuorder', 
+                    JSON.stringify(this.state),
+                    {
+                        headers: {'Content-Type':'application/json'}
+                    }
+                )
+          .then(function (response) {
+            if (response.status == 200) {
+                alert("Order successfully submitted");
+                this.setState({
+                    name: '',
+                    company: '',
+                    orderSize: ''
+                });
+            }
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+        // event.preventDefault();
     }
 
     
@@ -50,7 +74,7 @@ class OrderForm2 extends Component {
                             Name
                         </Form.Label>
                         <Col sm={9}>
-                            <Form.Control type="text" placeholder="Name" ref="name"/>
+                            <Form.Control type="text" placeholder="Name" ref="customerName"/>
                         </Col>
                     </Form.Group>
 
@@ -59,7 +83,7 @@ class OrderForm2 extends Component {
                             Company
                         </Form.Label>
                         <Col sm={9}>
-                            <Form.Control as='input' type="text" placeholder="Company" ref="company"/>
+                            <Form.Control as='input' type="text" placeholder="Company" ref="customerCompany"/>
                         </Col>
                     </Form.Group>
 

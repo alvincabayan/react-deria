@@ -18,26 +18,33 @@ class OrderForm2 extends Component {
       }
     
     handleSubmit = (event) => {
-        this.setState({
+        event.preventDefault();
+        const self = this;
+        const customerName = self.refs.customerName.value;
+        const customerCompany = self.refs.customerCompany.value;
+        const orderSize = ReactDOM.findDOMNode(self).querySelector('input[type="radio"][name="orderSize"]:checked').value;
+
+        self.setState({
             name: "laing",
-            customerName: this.refs.customerName.value,
-            customerCompany: this.refs.customerCompany.value,
-            orderSize: ReactDOM.findDOMNode(this).querySelector('input[type="radio"][name="orderSize"]:checked').value
-        });
-        
-        console.log(JSON.stringify(this.state));
-        axios.post('http://localhost:8080/deria/v1/menuorder', 
-                    JSON.stringify(this.state),
-                    {
-                        headers: {'Content-Type':'application/json'}
-                    }
-                )
-          .then(function (response) {
+            customerName: customerName,
+            customerCompany: customerCompany,
+            orderSize: orderSize
+        }, 
+        () => {
+            console.log(JSON.stringify(self.state));
+            axios.post('http://localhost:8080/deria/v1/menuorder', 
+                JSON.stringify(self.state),
+                {
+                    headers: {'Content-Type':'application/json'}
+                }
+            )
+            .then(function (response) {
             if (response.status == 200) {
                 alert("Order successfully submitted");
-                this.setState({
-                    name: '',
-                    company: '',
+                self.setState({
+                    name: "laing",
+                    customerName: '',
+                    customerCompany: '',
                     orderSize: ''
                 });
             }
@@ -45,7 +52,8 @@ class OrderForm2 extends Component {
           .catch(function (error) {
             console.log(error);
           });
-        // event.preventDefault();
+        }
+        );
     }
 
     

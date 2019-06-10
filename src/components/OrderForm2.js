@@ -39,7 +39,7 @@ class OrderForm2 extends Component {
                 }
             )
             .then(function (response) {
-            if (response.status == 200) {
+            if (response.status === 200) {
                 alert("Order successfully submitted");
                 self.setState({
                     name: "laing",

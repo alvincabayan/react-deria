@@ -38,7 +38,7 @@ const JumbotronHome = () => (
             </video>
 
             <Container>
-                <h1 className="display-1">[`de-Ria]</h1>
+                <h1 className="display-1">[deRia]</h1>
                 <p className="lead">Welcome to Auckland's best food prepared by Filipino Mom.</p>
             </Container>
             

@@ -10,7 +10,7 @@ const Styles = styled.div`
 const NavigationBar = () => (
     <Styles>
         <Navbar bg="dark" variant="dark" expand="lg">
-            <Navbar.Brand href="/">`de-Ria</Navbar.Brand>
+            <Navbar.Brand href="/">deRia</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">

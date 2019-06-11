@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Container } from 'react-bootstrap';
 import ProductDetail from './ProductDetail';
-import styled from 'styled-components';
 import axios from 'axios';
 
 class Home extends Component {
@@ -45,7 +44,8 @@ class Home extends Component {
         }
         })
         .catch(function (error) {
-        console.log(error);
+            alert(error);
+            console.log(error);
         });
     }
 
@@ -63,32 +63,23 @@ class Home extends Component {
         
         ;
     }
+
+    
     
     render() {
-        const Styles = styled.div`
-            .productDetailContainer {
-                display: block;
-                margin-left: auto;
-                margin-right: auto;
-                width: 700px;
-                background: #D3D3D3;
-                padding: 20px;
-            }
-        `;
-        
         return (
-           <Styles>
-                <Container className="productDetailContainer">
-                    <ProductDetail 
-                    menuOrderName={this.state.menuOrderName}
-                    customerName={this.state.customerName}
-                    customerCompany={this.state.customerCompany}
-                    menuOrderSize={this.state.menuOrderSize}
-                    handleChange={this.handleChange}
-                    handleSubmit={this.handleSubmit}
-                    />
-                </Container>
-           </Styles>
+            <Container >
+                <ProductDetail
+                menuOrderName={this.state.menuOrderName}
+                customerName={this.state.customerName}
+                customerCompany={this.state.customerCompany}
+                menuOrderSize={this.state.menuOrderSize}
+                handleChange={this.handleChange}
+                handleSubmit={this.handleSubmit}
+                />
+
+            
+            </Container>
         )
     }
 }

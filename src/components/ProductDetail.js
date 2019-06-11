@@ -1,13 +1,21 @@
 import React from 'react'
 import { Form, Button, Image, Row, Col } from 'react-bootstrap';
 import laing from '../assets/laing.jpg';
+import styled from 'styled-components';
 
-
+const Styles = styled.div`
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 700px;
+            background: #D3D3D3;
+            padding: 20px;
+        `;
 
 const ProductDetail = props => {
     const {menuOrderName, customerName, customerCompany, menuOrderSize, handleChange, handleSubmit} = props;
     return (
-        <div>
+        <Styles>
             <Row>
                 <Col><Image src={laing} fluid></Image></Col>
                 <Col>
@@ -73,7 +81,7 @@ const ProductDetail = props => {
                     </Form>
                 </Col>
             </Row>
-        </div>
+        </Styles>
     );
 };
 

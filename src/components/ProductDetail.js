@@ -1,6 +1,6 @@
 import React from 'react'
 import { Form, Button, Image, Row, Col } from 'react-bootstrap';
-import laing from '../assets/laing.jpg';
+import kaldereta from '../assets/kaldereta.jpg';
 import styled from 'styled-components';
 
 const Styles = styled.div`
@@ -17,7 +17,7 @@ const ProductDetail = props => {
     return (
         <Styles>
             <Row>
-                <Col><Image src={laing} fluid></Image></Col>
+                <Col><Image src={kaldereta} fluid></Image></Col>
                 <Col>
                     <h3>Special Order : {menuOrderName}</h3>
                     <br/>

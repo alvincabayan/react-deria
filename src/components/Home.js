@@ -26,7 +26,8 @@ class Home extends Component {
         const self = this; 
       
         console.log(JSON.stringify(self.state));
-        axios.post('http://localhost:8080/deria/v1/menuorder', 
+        // axios.post('http://localhost:8080/deria/v1/menuorder', 
+        axios.post('http://45.33.97.103:8080/deria/v1/menuorder', 
             JSON.stringify(self.state),
             {
                 headers: {'Content-Type':'application/json'}
@@ -51,7 +52,8 @@ class Home extends Component {
 
     componentDidMount() {
         const self = this; 
-        axios.get('http://localhost:8080/deria/v1/currentMenu')
+        // axios.get('http://localhost:8080/deria/v1/currentMenu')
+        axios.get('http://45.33.97.103:8080/deria/v1/currentMenu')
             .then(function (response) {
                 self.setState({
                     menuOrderName: response.data.currentMenuName,

@@ -26,6 +26,7 @@ class Home extends Component {
         const self = this; 
       
         console.log(JSON.stringify(self.state));
+        // if (self.state.customerName.isEm)
         // axios.post('http://localhost:8080/deria/v1/menuorder', 
         axios.post('http://45.33.97.103:8080/deria/v1/menuorder', 
             JSON.stringify(self.state),

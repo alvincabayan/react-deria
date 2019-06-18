@@ -27,7 +27,7 @@ const ProductDetail = props => {
                                 Name
                             </Form.Label>
                             <Col sm={8}>
-                            <Form.Control value={customerName} onChange={handleChange} name="customerName" type="text" placeholder="Type your name." />
+                            <Form.Control value={customerName || ''} onChange={handleChange} name="customerName" type="text" placeholder="Type your name." />
                             </Col>
                         </Form.Group>
 
@@ -36,7 +36,7 @@ const ProductDetail = props => {
                                 Company
                             </Form.Label>
                             <Col sm={8}>
-                            <Form.Control value={customerCompany} onChange={handleChange} name="customerCompany" type="text" placeholder="Type your Company." />
+                            <Form.Control value={customerCompany || ''} onChange={handleChange} name="customerCompany" type="text" placeholder="Type your Company." />
                             </Col>
                         </Form.Group>
 

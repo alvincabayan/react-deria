@@ -11,7 +11,7 @@ class Home extends Component {
             menuOrderName: '', 
             customerName: '',
             customerCompany: '',
-            menuOrderSize: '',
+            menuOrderSize: 'small',
         }
     }
 
@@ -23,32 +23,37 @@ class Home extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        const self = this; 
+        const self = this;
+        const {customerName, customerCompany} = self.state;
       
         console.log(JSON.stringify(self.state));
-        // if (self.state.customerName.isEm)
         // axios.post('http://localhost:8080/deria/v1/menuorder', 
-        axios.post('http://45.33.97.103:8080/deria/v1/menuorder', 
-            JSON.stringify(self.state),
-            {
-                headers: {'Content-Type':'application/json'}
-            }
-        )
-        .then(function (response) {
-        if (response.status === 200) {
-            alert("Order successfully submitted");
-            self.setState({
-                menuOrderName: self.state.menuOrderName,
-                customerName: '',
-                customerCompany: '',
-                menuOrderSize: ''
+
+        if(customerName || customerCompany) {
+            axios.post('http://45.33.97.103:8080/deria/v1/menuorder', 
+                JSON.stringify(self.state),
+                {
+                    headers: {'Content-Type':'application/json'}
+                }
+            )
+            .then(function (response) {
+                if (response.status === 200) {
+                    alert("Order successfully submitted");
+                    self.setState({
+                        menuOrderName: self.state.menuOrderName,
+                        customerName: '',
+                        customerCompany: '',
+                        menuOrderSize: ''
+                    });
+                }
+            })
+            .catch(function (error) {
+                alert(error);
+                console.log(error);
             });
+        } else {
+            alert("You must enter your name and your company");
         }
-        })
-        .catch(function (error) {
-            alert(error);
-            console.log(error);
-        });
     }
 
     componentDidMount() {
